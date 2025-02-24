@@ -15,27 +15,34 @@
 int main() {
 	double a, b, c;
 	double x1, x2, x, d;
- 	printf("enter a = ");
-	scanf("%lf",&a);
-	printf("enter b = ");
-	scanf("%lf",&b);
-	printf("enter c = ");
-	scanf("%lf",&c);
-	d=b*b-4*a*c;
-	if (d<0){
-	printf("discriminant < 0, no solutions");
-	return 1;
+	int y=0;
+	do{
+	 	printf("enter a = ");
+		scanf("%lf",&a);
+		printf("enter b = ");
+		scanf("%lf",&b);
+		printf("enter c = ");
+		scanf("%lf",&c);
+		d=b*b-4*a*c;
+		if (d<0){
+		printf("discriminant < 0, no solutions \n");
+		}
+		if (d==0){
+		printf("discriminant = 0, x1=x2=x \n");
+		x=(-b)/(2*a);
+		printf("x = %1f \n", x);
+		}
+		if (d>0){
+		x1=(-b+sqrt(d))/(2*a);
+		x2=(-b-sqrt(d))/(2*a);
+		
+		printf("x1 = %1f \n", x1);
+		printf("x2 = %1f \n", x2);
+		}
+
+		printf("1 - prodolzit, any other number - exit");
+		scanf("%d", &y);
 	}
-	if (d==0){
-	printf("discriminant = 0, x1=x2=x \n");
-	x=(-b)/(2*a);
-	printf("x = %1f \n", x);
-	return 1;
-	}
-	x1=(-b+sqrt(d))/(2*a);
-	x2=(-b-sqrt(d))/(2*a);
-	
-	printf("x1 = %1f \n", x1);
-	printf("x2 = %1f \n", x2);
+	while (1==y);
 	return 0;
 }
