@@ -1,0 +1,4 @@
+aname 1999 m 1.8
+bname 1987 f 1.6
+cname 2000 m 1.9
+dname 1901 f 2.0
