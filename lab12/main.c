@@ -17,20 +17,33 @@ int main(void)
 	scanf("%s", s);
 	
 	if (strlen(s)==10){
+		time_t now;
+		struct tm * timeinfo;
+		
 	    char *token;
 	    int y,m,d;
 	    int weekday;
 	    char *day;
 	    token = strtok(s, ".");
 	    y = atoi(token);
-	        
 	    token = strtok(NULL, ".");
 	    m = atoi(token);
-	            
 	    token = strtok(NULL, ".");
 	    d = atoi(token);
+	    time (&now); 
+		timeinfo = localtime (&now);
+		timeinfo->tm_year = y - 1900;
+		timeinfo->tm_mon = m - 1;
+		timeinfo->tm_mday = d;
+		timeinfo->tm_wday = 0;
+		mktime(timeinfo);
+		
+		const char* weekdays[] = {"sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"};
+		
+		printf("%s",weekdays[timeinfo->tm_wday]);
+		
 
-		weekday  = (d += m < 3 ? y-- : y - 2, 23*m/9 + d + 4 + y/4- y/100 + y/400)%7;
+		/*weekday  = (d += m < 3 ? y-- : y - 2, 23*m/9 + d + 4 + y/4- y/100 + y/400)%7;
 		if (weekday ==0){
 			day = "sunday";
 		}
@@ -52,7 +65,7 @@ int main(void)
 		if (weekday ==6){
 			day = "saturday";
 		}
-		printf("Weekday: %s\n",day);
+		printf("Weekday: %s\n",day);*/
 		
 		return 0;
 	}
@@ -77,7 +90,7 @@ int main(void)
 		timeinfo->tm_mday = 1;
 		mktime(timeinfo);
 		
-		printf("\n                        %s\n",months[timeinfo->tm_mon]);
+		printf("\n%s\n",months[timeinfo->tm_mon]);
 		printf("_______________________________\n");
 		printf("  Su  Mo  Tu  We  Th  Fr  Sa\n");
 		printf("_______________________________\n");
@@ -136,7 +149,7 @@ int main(void)
 		        mktime (timeinfo); 
 		 
 		        if(timeinfo->tm_mon > m)
-		        {   printf("\n                        %s\n",month[timeinfo->tm_mon]);
+		        {   printf("\n%s\n",month[timeinfo->tm_mon]);
 		            printf("_______________________________\n");
 		            printf("  Su  Mo  Tu  We  Th  Fr  Sa\n");
 		            printf("_______________________________\n");
